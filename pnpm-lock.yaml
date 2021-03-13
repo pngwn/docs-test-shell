@@ -1,11 +1,29 @@
-devDependencies:
-  '@sveltejs/adapter-netlify': 1.0.0-next.2
-  '@sveltejs/kit': 1.0.0-next.45_svelte@3.35.0+vite@2.0.5
-  svelte: 3.35.0
-  svelte-preprocess: 4.6.9_svelte@3.35.0+typescript@4.2.3
-  tslib: 2.1.0
-  typescript: 4.2.3
-  vite: 2.0.5
+importers:
+  .:
+    devDependencies:
+      svelte: 3.35.0
+    specifiers:
+      svelte: ^3.35.0
+  packages/svelte-shell:
+    dependencies:
+      '@site/comps': link:../components
+    devDependencies:
+      '@sveltejs/adapter-netlify': 1.0.0-next.2
+      '@sveltejs/kit': 1.0.0-next.45_svelte@3.35.0+vite@2.0.5
+      svelte: 3.35.0
+      svelte-preprocess: 4.6.9_svelte@3.35.0+typescript@4.2.3
+      tslib: 2.1.0
+      typescript: 4.2.3
+      vite: 2.0.5
+    specifiers:
+      '@site/comps': workspace:^0.0.1
+      '@sveltejs/adapter-netlify': ^1.0.0-next.2
+      '@sveltejs/kit': next
+      svelte: ^3.29.0
+      svelte-preprocess: ^4.0.0
+      tslib: ^2.0.0
+      typescript: ^4.0.0
+      vite: ^2.0.4
 lockfileVersion: 5.2
 packages:
   /@rollup/pluginutils/4.1.0:
@@ -402,11 +420,3 @@ packages:
       fsevents: 2.3.2
     resolution:
       integrity: sha512-QTgEDbq1WsTtr6j+++ewjhBFEk6c8v0xz4fb/OWJQKNYU8ZZtphOshwOqAlnarSstPBtWCBR0tsugXx6ajfoUg==
-specifiers:
-  '@sveltejs/adapter-netlify': ^1.0.0-next.2
-  '@sveltejs/kit': next
-  svelte: ^3.29.0
-  svelte-preprocess: ^4.0.0
-  tslib: ^2.0.0
-  typescript: ^4.0.0
-  vite: ^2.0.4

@@ -1,0 +1,5 @@
+{
+	"name": "@site/comps",
+	"version": "0.0.1",
+	"svelte": "src/index.js"
+}
