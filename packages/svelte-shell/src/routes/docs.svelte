@@ -1,9 +1,10 @@
 <script context="module">
 	export async function load({ fetch }) {
-		console.log(fetch);
-		const res = await fetch(`https://svelte-api.pngwn.workers.dev/`);
-		console.log(res);
-		const docs = await res.json();
+		// let r = await fetch("/docs.json");
+		let r = await fetch("https://svelte-api.pngwn.workers.dev", {
+			highWaterMark: 1024 * 1024,
+		});
+		const docs = await r.json();
 
 		return {
 			props: {
