@@ -8,7 +8,7 @@ async function handleRequest(request) {
     headers: { 
 			'content-type': 'application/json', 
 			'Access-Control-Allow-Origin': '*',
-			'Access-Control-Allow-Methods': 'GET,HEAD,PUT,PATCH,POST,DELETE'
+			'Content-Length': value.length
 		},
   })
 }

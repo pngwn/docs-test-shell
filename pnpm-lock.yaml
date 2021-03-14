@@ -4,12 +4,16 @@ importers:
       svelte: 3.35.0
     specifiers:
       svelte: ^3.35.0
+  packages/api:
+    specifiers: {}
+  packages/components:
+    specifiers: {}
   packages/svelte-shell:
     dependencies:
       '@site/comps': link:../components
     devDependencies:
       '@sveltejs/adapter-netlify': 1.0.0-next.2
-      '@sveltejs/kit': 1.0.0-next.45_svelte@3.35.0+vite@2.0.5
+      '@sveltejs/kit': 1.0.0-next.46_svelte@3.35.0+vite@2.0.5
       svelte: 3.35.0
       svelte-preprocess: 4.6.9_svelte@3.35.0+typescript@4.2.3
       tslib: 2.1.0
@@ -43,7 +47,7 @@ packages:
     dev: true
     resolution:
       integrity: sha512-u69qaCeHj+FFxyNnoFr8YxTmHVgdiZNPuHJUuKO0hXGtXCw9IuTKh3oxY4t1DEyuRGLJahmXV9G+DkZgR1iK6g==
-  /@sveltejs/kit/1.0.0-next.45_svelte@3.35.0+vite@2.0.5:
+  /@sveltejs/kit/1.0.0-next.46_svelte@3.35.0+vite@2.0.5:
     dependencies:
       '@sveltejs/vite-plugin-svelte': 1.0.0-next.3_svelte@3.35.0+vite@2.0.5
       '@svitejs/vite-plugin-svelte': 0.10.0_svelte@3.35.0+vite@2.0.5
@@ -57,7 +61,7 @@ packages:
       svelte: ^3.32.1
       vite: ^2.0.4
     resolution:
-      integrity: sha512-GghGUxszjgMJMf3j3FifoUB62dLDFWmy6eL6LxDj1VvpcpIx2PnJLbRbbyzzWNEKS4N41b8pQIi4uF+HYSVQ/w==
+      integrity: sha512-/X7qdGf7w5ft6f61RO5nABa6SFGm8nMr1BpluQABFRP2nc+NfAzpKz3dWd74U8CNTWL9xhUoXA/PdxxQsGUpbg==
   /@sveltejs/vite-plugin-svelte/1.0.0-next.3_svelte@3.35.0+vite@2.0.5:
     dependencies:
       '@rollup/pluginutils': 4.1.0

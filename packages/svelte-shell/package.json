@@ -21,7 +21,6 @@
 		"node": ">= 12.17.0"
 	},
 	"dependencies": {
-		"@site/comps": "workspace:^0.0.1",
-		"node-fetch": "^2.6.1"
+		"@site/comps": "workspace:^0.0.1"
 	}
 }
