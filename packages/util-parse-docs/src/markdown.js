@@ -21,6 +21,7 @@ export function extract_frontmatter(markdown) {
 	return { metadata, content };
 }
 
+// TODO: this never runs and is uneeded
 export function extract_metadata(line, lang) {
 	try {
 		if (lang === "html" && line.startsWith("<!--") && line.endsWith("-->")) {

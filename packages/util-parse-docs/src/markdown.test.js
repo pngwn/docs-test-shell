@@ -5,12 +5,10 @@ import {
 	RE_FRONTMATTER,
 	link_renderer,
 	extract_frontmatter,
-	extract_metadata,
 } from "./markdown.js";
 
 const regex = suite("frontmatter-regex");
 const frontmatter = suite("extract-frontmatter");
-const metadata = suite("extract-metadata");
 const renderer = suite("link-renderer");
 
 regex("matches frontmatter correctly", () => {
@@ -80,5 +78,50 @@ a paragraph.
 	});
 });
 
+renderer("renders link", () => {
+	const output = link_renderer("/local/path/to/file", null, "a link");
+
+	assert.is(
+		output,
+		'<a href="/local/path/to/file" rel="noopener noreferrer">a link</a>'
+	);
+});
+
+renderer("renders link with title attribute", () => {
+	const output = link_renderer(
+		"/local/path/to/file",
+		"about my link",
+		"a link"
+	);
+
+	assert.is(
+		output,
+		'<a href="/local/path/to/file" title="about my link" rel="noopener noreferrer">a link</a>'
+	);
+});
+
+renderer("renders external links with target _blank: no title", () => {
+	const output = link_renderer("https://google.com", null, "a link");
+
+	assert.is(
+		output,
+		'<a href="https://google.com" target="_blank" rel="noopener noreferrer">a link</a>'
+	);
+});
+
+renderer("renders external links with target _blank: no title", () => {
+	const output = link_renderer(
+		"https://google.com",
+		"a search engine",
+		"a link"
+	);
+
+	assert.is(
+		output,
+		'<a href="https://google.com" target="_blank" title="a search engine" rel="noopener noreferrer">a link</a>'
+	);
+});
+
 regex.run();
 frontmatter.run();
+renderer.run();
