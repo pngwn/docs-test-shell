@@ -12,7 +12,7 @@ importers:
     dependencies:
       '@site/comps': link:../components
     devDependencies:
-      '@sveltejs/adapter-netlify': 1.0.0-next.2
+      '@sveltejs/adapter-netlify': 1.0.0-next.3
       '@sveltejs/kit': 1.0.0-next.46_svelte@3.35.0+vite@2.0.5
       svelte: 3.35.0
       svelte-preprocess: 4.6.9_svelte@3.35.0+typescript@4.2.3
@@ -21,7 +21,7 @@ importers:
       vite: 2.0.5
     specifiers:
       '@site/comps': workspace:^0.0.1
-      '@sveltejs/adapter-netlify': ^1.0.0-next.2
+      '@sveltejs/adapter-netlify': ^1.0.0-next.3
       '@sveltejs/kit': next
       svelte: ^3.29.0
       svelte-preprocess: ^4.0.0
@@ -41,12 +41,12 @@ packages:
       rollup: ^1.20.0||^2.0.0
     resolution:
       integrity: sha512-TrBhfJkFxA+ER+ew2U2/fHbebhLT/l/2pRk0hfj9KusXUuRXd2v0R58AfaZK9VXDQ4TogOSEmICVrQAA3zFnHQ==
-  /@sveltejs/adapter-netlify/1.0.0-next.2:
+  /@sveltejs/adapter-netlify/1.0.0-next.3:
     dependencies:
       toml: 3.0.0
     dev: true
     resolution:
-      integrity: sha512-u69qaCeHj+FFxyNnoFr8YxTmHVgdiZNPuHJUuKO0hXGtXCw9IuTKh3oxY4t1DEyuRGLJahmXV9G+DkZgR1iK6g==
+      integrity: sha512-wlQmSlujoh1BM1Shh/xsSOUPTudypyKfg4ssCV05o+2An4SBHO8PIiFqgWxMBnvFyTJu2VGHu1Ruxzf1yoaQqA==
   /@sveltejs/kit/1.0.0-next.46_svelte@3.35.0+vite@2.0.5:
     dependencies:
       '@sveltejs/vite-plugin-svelte': 1.0.0-next.3_svelte@3.35.0+vite@2.0.5
