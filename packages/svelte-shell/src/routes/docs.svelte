@@ -1,9 +1,9 @@
 <script context="module">
 	export async function load({ fetch }) {
-		// let r = await fetch("/docs.json");
 		let r = await fetch("https://svelte-api.pngwn.workers.dev", {
 			highWaterMark: 1024 * 1024,
 		});
+		console.log(r, "hi");
 		const docs = await r.json();
 
 		return {

@@ -1,0 +1,16 @@
+{
+	"name": "@site/action-upload-docs",
+	"version": "0.0.1",
+	"scripts": {
+	},
+	"devDependencies": {
+	
+	},
+	"type": "module",
+	"engines": {
+		"node": ">= 12.17.0"
+	},
+	"dependencies": {
+	
+	}
+}

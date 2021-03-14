@@ -33,7 +33,7 @@
 		}
 	});
 
-	console.log(sections);
+	// console.log(sections);
 </script>
 
 <ul
