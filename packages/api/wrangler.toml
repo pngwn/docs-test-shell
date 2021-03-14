@@ -1,0 +1,9 @@
+name = "svelte-api"
+type = "javascript"
+account_id = "03a53ffe7b4926e8f6c4aa5e2ddf6b0f"
+workers_dev = true
+route = ""
+zone_id = ""
+kv_namespaces = [
+	 { binding = "SVELTE_DOCS", id = "e031c432a7d943d39dec45d34020883d", preview_id = "e031c432a7d943d39dec45d34020883d" }
+]

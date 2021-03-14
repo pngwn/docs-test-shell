@@ -1,7 +1,10 @@
 <script context="module">
-	import { docs } from "./_docs.js";
+	export async function load({ fetch }) {
+		console.log(fetch);
+		const res = await fetch(`https://svelte-api.pngwn.workers.dev/`);
+		console.log(res);
+		const docs = await res.json();
 
-	export async function load() {
 		return {
 			props: {
 				docs,
