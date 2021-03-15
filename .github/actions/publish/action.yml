@@ -1,0 +1,7 @@
+name: "Generate Docs"
+
+description: "Generate docs from markdown"
+
+runs:
+  using: "node12"
+  main: "dist/main.js"
