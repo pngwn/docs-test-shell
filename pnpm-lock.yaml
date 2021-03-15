@@ -15,7 +15,7 @@ importers:
       '@site/comps': link:../components
     devDependencies:
       '@sveltejs/adapter-netlify': 1.0.0-next.3
-      '@sveltejs/kit': 1.0.0-next.46_svelte@3.35.0+vite@2.0.5
+      '@sveltejs/kit': 1.0.0-next.48_svelte@3.35.0+vite@2.0.5
       svelte: 3.35.0
       svelte-preprocess: 4.6.9_svelte@3.35.0+typescript@4.2.3
       tslib: 2.1.0
@@ -83,10 +83,9 @@ packages:
     dev: true
     resolution:
       integrity: sha512-wlQmSlujoh1BM1Shh/xsSOUPTudypyKfg4ssCV05o+2An4SBHO8PIiFqgWxMBnvFyTJu2VGHu1Ruxzf1yoaQqA==
-  /@sveltejs/kit/1.0.0-next.46_svelte@3.35.0+vite@2.0.5:
+  /@sveltejs/kit/1.0.0-next.48_svelte@3.35.0+vite@2.0.5:
     dependencies:
-      '@sveltejs/vite-plugin-svelte': 1.0.0-next.3_svelte@3.35.0+vite@2.0.5
-      '@svitejs/vite-plugin-svelte': 0.10.0_svelte@3.35.0+vite@2.0.5
+      '@svitejs/vite-plugin-svelte': 0.11.0_svelte@3.35.0+vite@2.0.5
       cheap-watch: 1.0.3
       sade: 1.7.4
       svelte: 3.35.0
@@ -97,25 +96,8 @@ packages:
       svelte: ^3.32.1
       vite: ^2.0.4
     resolution:
-      integrity: sha512-/X7qdGf7w5ft6f61RO5nABa6SFGm8nMr1BpluQABFRP2nc+NfAzpKz3dWd74U8CNTWL9xhUoXA/PdxxQsGUpbg==
-  /@sveltejs/vite-plugin-svelte/1.0.0-next.3_svelte@3.35.0+vite@2.0.5:
-    dependencies:
-      '@rollup/pluginutils': 4.1.0
-      chalk: 4.1.0
-      hash-sum: 2.0.0
-      require-relative: 0.8.7
-      slash: 3.0.0
-      source-map: 0.7.3
-      svelte: 3.35.0
-      svelte-hmr: 0.12.9_svelte@3.35.0
-      vite: 2.0.5
-    dev: true
-    peerDependencies:
-      svelte: ^3.34.0
-      vite: ^2
-    resolution:
-      integrity: sha512-9zS62JMhwHZ0/ZHrKErNfLMupwLStrnPJU2Dc3zstE6xJGxVuz3xmeVRG90wrEx1QEnEEB98YSmR5au8VXd1hw==
-  /@svitejs/vite-plugin-svelte/0.10.0_svelte@3.35.0+vite@2.0.5:
+      integrity: sha512-UFMc19MMGWTQQEWPzT3Fl7rr2eXr1DVVvFRvmYS1c/dPFVJABKqo9DU33590FfPLy72K+he1nmhrY+zoTNZWfQ==
+  /@svitejs/vite-plugin-svelte/0.11.0_svelte@3.35.0+vite@2.0.5:
     dependencies:
       '@rollup/pluginutils': 4.1.0
       chalk: 4.1.0
@@ -134,7 +116,7 @@ packages:
       svelte: ^3.35.0
       vite: ^2.0.5
     resolution:
-      integrity: sha512-gttcMIZvLwanYbkfkl77o8mkPKxnYGoqz0xOfz4ZPrzJdan+DzH9b2PEQbpWb53klFKANB7FPBDr7bCaixIT5Q==
+      integrity: sha512-Zeha2eeFHUyHvyd1pqK+e5NfTeZ9zwgYSGd4fOMK/GN9iTKNhGighxWAibafE/Bh2V1JC3JEvqc+nxK+PyQE2Q==
   /@types/node/14.14.34:
     dev: true
     resolution:
@@ -440,14 +422,6 @@ packages:
       node: '>=8'
     resolution:
       integrity: sha512-qpCAvRl9stuOHveKsn7HncJRvv501qIacKzQlO/+Lwxc9+0q2wLyv4Dfvt80/DPn2pqOBsJdDiogXGR9+OvwRw==
-  /svelte-hmr/0.12.9_svelte@3.35.0:
-    dependencies:
-      svelte: 3.35.0
-    dev: true
-    peerDependencies:
-      svelte: '>=3.19.0'
-    resolution:
-      integrity: sha512-SGE7Odznj4dqZtUVIWcoPCvZ9gHImxVIIjrz+O3DDSi0j4OaSLim6MRF4UdhlBKeW3glSRc+tXNSKYvM5x+Dyw==
   /svelte-hmr/0.13.0-2_svelte@3.35.0:
     dependencies:
       svelte: 3.35.0
