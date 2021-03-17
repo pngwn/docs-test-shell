@@ -16,7 +16,7 @@ async function get_files_from_repo(client, target_repo, base_dir) {
 	);
 }
 
-function run() {
+async function run() {
 	const type = core.getInput("type");
 	const target_repo = core.getInput("repo");
 	const base_dir = core.getInput("base");
@@ -25,7 +25,7 @@ function run() {
 	console.log(JSON.stringify(github, null, 2));
 
 	const octokit = github.getOctokit(token);
-	const files = get_files_from_repo(octokit, target_repo, base_dir);
+	const files = await get_files_from_repo(octokit, target_repo, base_dir);
 	console.log(files);
 
 	// get TAG, get PROJECT

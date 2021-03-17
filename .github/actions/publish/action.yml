@@ -12,6 +12,9 @@ inputs:
   base:
     description: "the base dir for the docs of the repo"
     required: true
+  token:
+    description: "the base dir for the docs of the repo"
+    required: true
 
 runs:
   using: "node12"
