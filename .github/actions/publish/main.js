@@ -7,7 +7,7 @@ async function get_files_from_repo(client, target_repo, base_dir) {
 		repo: target_repo,
 		path: base_dir,
 	});
-	if (!Array.isArray(content.data)) console.log(base_dir, content);
+	// if (!Array.isArray(content.data)) console.log(base_dir, content);
 
 	if (content.data.type === "file" && content.data.contents)
 		return [content.data];
@@ -26,7 +26,7 @@ async function run() {
 	const base_dir = core.getInput("base");
 	const token = core.getInput("token");
 	console.log(type, "\n", target_repo, "\n", base_dir);
-	console.log(JSON.stringify(github, null, 2));
+	// console.log(JSON.stringify(github, null, 2));
 
 	const octokit = github.getOctokit(token);
 	const files = await get_files_from_repo(octokit, target_repo, base_dir);
