@@ -1,4 +1,14 @@
 on: workflow_dispatch
+  inputs:
+    type:
+      description: "the release type"
+      required: true
+    repo:
+      description: "the target repo for the docs"
+      required: true
+    base:
+      description: "the base dir for the docs of the repo"
+      required: true
 
 jobs:
   publish_docs:
@@ -8,3 +18,7 @@ jobs:
       - name: publish
         id: projects
         uses: ./.github/actions/publish
+        with:
+          type: ${{github.event.inputs.type}}
+          repo: ${{github.event.inputs.repo}}
+          base: ${{github.event.inputs.base}}
