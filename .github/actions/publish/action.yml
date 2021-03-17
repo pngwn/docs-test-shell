@@ -2,6 +2,14 @@ name: "Generate Docs"
 
 description: "Generate docs from markdown"
 
+inputs:
+  type:
+    description: "the release type"
+    required: false
+  docs:
+    description: "the formatted docs"
+    required: true
+
 runs:
   using: "node12"
   main: "dist/main.js"
