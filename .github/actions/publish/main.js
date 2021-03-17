@@ -3,8 +3,9 @@ import core from "@actions/core";
 
 function run() {
 	const type = core.getInput("type");
-	const docs = core.getInput("docs");
-	console.log(type, "\n", docs);
+	const target_repo = core.getInput("repo");
+	const base_dir = core.getInput("base");
+	console.log(type, "\n", target_repo, "\n", base_dir);
 	console.log(JSON.stringify(github, null, 2));
 
 	// get TAG, get PROJECT
