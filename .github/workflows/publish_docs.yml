@@ -25,3 +25,4 @@ jobs:
           type: ${{github.event.inputs.type}}
           repo: ${{github.event.inputs.repo}}
           base: ${{github.event.inputs.base}}
+          token: ${{ secrets.WORKFLOW_TOKEN }}
