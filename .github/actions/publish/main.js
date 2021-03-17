@@ -26,7 +26,7 @@ function base64_to_string(encoded) {
 
 function find_type(array, base) {
 	if (!array[0].path) return find_type(array[0], base);
-
+	console.log(array[0].path, base);
 	const re = new RegExp(`^${base}\/(\w+)\/`);
 	const [, type] = array[0].path.match(re);
 	return type;
@@ -43,9 +43,9 @@ async function run() {
 	const octokit = github.getOctokit(token);
 	const files = await get_files_from_repo(octokit, target_repo, base_dir);
 
-	const categories = [];
+	const categories = {};
 	const sorted = files.forEach((arr) => {
-		const type = find_type(arr);
+		const type = find_type(arr, base);
 		console.log(type);
 
 		if (categories[type]) categories[type].push(arr);
