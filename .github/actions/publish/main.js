@@ -7,6 +7,7 @@ async function get_files_from_repo(client, target_repo, base_dir) {
 		repo: target_repo,
 		path: base_dir,
 	});
+	console.log(content);
 
 	return await Promise.all(
 		content.data.map(async (data) => {
