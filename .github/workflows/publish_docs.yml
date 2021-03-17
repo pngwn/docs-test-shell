@@ -1,7 +1,7 @@
 name: "Deploy docs"
 
-on: 
-  workflow_dispatch
+on:
+  workflow_dispatch:
     inputs:
       type:
         description: "the release type"
