@@ -6008,12 +6008,15 @@ async function get_files_from_repo(client, target_repo, base_dir) {
 		repo: target_repo,
 		path: base_dir,
 	});
-	console.log(content);
+	if (!Array.isArray(content.data)) console.log(base_dir, content);
+
+	if (content.data.type === "file" && content.data.contents)
+		return [content.data];
 
 	return await Promise.all(
 		content.data.map(async (data) => {
-			if (data.type === "file" && data.contents) return data;
-			else return await get_files_from_repo(client, target_repo, data.path);
+			// if (data.type === "file" && data.contents) return data;
+			return await get_files_from_repo(client, target_repo, data.path);
 		})
 	);
 }
