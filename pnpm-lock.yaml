@@ -5,6 +5,8 @@ importers:
     specifiers:
       svelte: ^3.35.0
   .github/actions/publish:
+    dependencies:
+      '@actions/core': 1.2.6
     devDependencies:
       '@actions/github': 4.0.0
       '@rollup/plugin-commonjs': 17.1.0_rollup@2.41.2
@@ -12,6 +14,7 @@ importers:
       rollup: 2.41.2
       rollup-plugin-terser: 7.0.2_rollup@2.41.2
     specifiers:
+      '@actions/core': ^1.2.6
       '@actions/github': ^4.0.0
       '@rollup/plugin-commonjs': ^17.1.0
       '@rollup/plugin-node-resolve': ^11.2.0
@@ -61,6 +64,10 @@ importers:
       uvu: ^0.5.1
 lockfileVersion: 5.2
 packages:
+  /@actions/core/1.2.6:
+    dev: false
+    resolution:
+      integrity: sha512-ZQYitnqiyBc3D+k7LsgSBmMDVkOVidaagDG7j3fOym77jNunWRuYx7VSHa9GNfFZh+zh61xsCjRj4JxMZlDqTA==
   /@actions/github/4.0.0:
     dependencies:
       '@actions/http-client': 1.0.9
