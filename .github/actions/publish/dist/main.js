@@ -6004,8 +6004,9 @@ var core$1 = /*@__PURE__*/getDefaultExportFromCjs(core);
 
 function run() {
 	const type = core$1.getInput("type");
-	const docs = core$1.getInput("docs");
-	console.log(type, "\n", docs);
+	const target_repo = core$1.getInput("repo");
+	const base_dir = core$1.getInput("base");
+	console.log(type, "\n", target_repo, "\n", base_dir);
 	console.log(JSON.stringify(github$1, null, 2));
 
 	// get TAG, get PROJECT
