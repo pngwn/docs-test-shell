@@ -6010,7 +6010,7 @@ async function get_files_from_repo(client, target_repo, base_dir) {
 	});
 	// if (!Array.isArray(content.data)) console.log(base_dir, content);
 
-	if (content.data.type === "file" && content.data.contents)
+	if (content.data.type === "file" && content.data.content)
 		return [content.data];
 
 	return await Promise.all(
