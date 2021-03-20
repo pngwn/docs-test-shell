@@ -1,6 +1,8 @@
 import github from "@actions/github";
 import core from "@actions/core";
 
+// this was really clever but github suck
+
 async function get_files_from_repo(client, target_repo, base_dir) {
 	const content = await client.repos.getContent({
 		owner: "pngwn",

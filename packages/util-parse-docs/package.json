@@ -1,10 +1,13 @@
 {
-	"name": "@site/util-parse-docs",
+	"name": "@pngwn/svelte-util-parse-docs",
 	"version": "0.0.1",
 	"scripts": {
-		"test": "uvu src test.js$"
+		"test": "uvu src test.js$",
+		"build": "rollup -c"
 	},
-	"main": "src/index.js",
+	"access": "public",
+	"module": "dist/index.js",
+	"main": "dist/index.js",
 	"type": "module",
 	"engines": {
 		"node": ">= 12.17.0"
@@ -17,6 +20,9 @@
 		"prismjs": "^1.23.0"
 	},
 	"devDependencies": {
+		"@rollup/plugin-commonjs": "^17.1.0",
+		"@rollup/plugin-node-resolve": "^11.2.0",
+		"rollup": "^2.41.5",
 		"uvu": "^0.5.1"
 	}
 }

@@ -1,5 +1,14 @@
 {
 	"name": "@site/api",
 	"version": "0.0.1",
-	"main": "index.js"
+	"main": "dist/index.js",
+	"scripts": {
+		"build": "rollup -c"
+	},
+	"dependencies": {
+		"@rollup/plugin-node-resolve": "^11.2.0",
+		"rollup": "^2.42.0",
+		"rollup-plugin-terser": "^7.0.2",
+		"worktop": "^0.1.0"
+	}
 }
