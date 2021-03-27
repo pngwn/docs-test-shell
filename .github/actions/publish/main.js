@@ -76,7 +76,7 @@ async function run() {
 			".git/info/sparse-checkout",
 		]);
 
-		const f = fs.readFileSync("./.git/info/sparse-checkout");
+		const f = fs.readFileSync("./.git/info/sparse-checkout").toString();
 		console.log("===\n", f, "\n===");
 		await exec.exec("git", ["sparse-checkout", "reapply"]);
 		await exec.exec("git", ["switch", target_branch]);
