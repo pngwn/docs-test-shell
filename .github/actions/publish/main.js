@@ -60,7 +60,8 @@ async function run() {
 		"1",
 	]);
 
-	await exec.exec("cd", [tmp_dir_name]);
+	// await exec.exec("cd", [tmp_dir_name]);
+	process.chdir(tmp_dir_name);
 	await exec.exec("git", ["sparse-checkout", "init"]);
 
 	// we only care about the documentation folder and any package readmes + package.jsons
