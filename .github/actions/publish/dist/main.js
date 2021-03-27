@@ -1,6 +1,6 @@
 'use strict';
 
-var fs_1 = require('fs');
+var fs$1 = require('fs');
 var require$$0 = require('os');
 var http = require('http');
 var https = require('https');
@@ -17,7 +17,7 @@ var childProcess = require('child_process');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
-var fs_1__default = /*#__PURE__*/_interopDefaultLegacy(fs_1);
+var fs__default = /*#__PURE__*/_interopDefaultLegacy(fs$1);
 var require$$0__default = /*#__PURE__*/_interopDefaultLegacy(require$$0);
 var http__default = /*#__PURE__*/_interopDefaultLegacy(http);
 var https__default = /*#__PURE__*/_interopDefaultLegacy(https);
@@ -69,8 +69,8 @@ class Context {
     constructor() {
         this.payload = {};
         if (process.env.GITHUB_EVENT_PATH) {
-            if (fs_1__default['default'].existsSync(process.env.GITHUB_EVENT_PATH)) {
-                this.payload = JSON.parse(fs_1__default['default'].readFileSync(process.env.GITHUB_EVENT_PATH, { encoding: 'utf8' }));
+            if (fs__default['default'].existsSync(process.env.GITHUB_EVENT_PATH)) {
+                this.payload = JSON.parse(fs__default['default'].readFileSync(process.env.GITHUB_EVENT_PATH, { encoding: 'utf8' }));
             }
             else {
                 const path = process.env.GITHUB_EVENT_PATH;
@@ -5739,7 +5739,7 @@ var __importStar$2 = (commonjsGlobal && commonjsGlobal.__importStar) || function
 
 // We use any as a valid input type
 /* eslint-disable @typescript-eslint/no-explicit-any */
-const fs = __importStar$2(fs_1__default['default']);
+const fs = __importStar$2(fs__default['default']);
 const os$1 = __importStar$2(require$$0__default['default']);
 
 function issueCommand(command, message) {
@@ -6018,7 +6018,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 
 
 
-_a = fs_1__default['default'].promises, exports.chmod = _a.chmod, exports.copyFile = _a.copyFile, exports.lstat = _a.lstat, exports.mkdir = _a.mkdir, exports.readdir = _a.readdir, exports.readlink = _a.readlink, exports.rename = _a.rename, exports.rmdir = _a.rmdir, exports.stat = _a.stat, exports.symlink = _a.symlink, exports.unlink = _a.unlink;
+_a = fs__default['default'].promises, exports.chmod = _a.chmod, exports.copyFile = _a.copyFile, exports.lstat = _a.lstat, exports.mkdir = _a.mkdir, exports.readdir = _a.readdir, exports.readlink = _a.readlink, exports.rename = _a.rename, exports.rmdir = _a.rmdir, exports.stat = _a.stat, exports.symlink = _a.symlink, exports.unlink = _a.unlink;
 exports.IS_WINDOWS = process.platform === 'win32';
 function exists(fsPath) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -7185,13 +7185,12 @@ async function run() {
 		await exec_1.exec("git", ["sparse-checkout", "init"]);
 
 		// we only care about the documentation folder and any package readmes + package.jsons
-		await exec_1.exec("echo", [
-			`"/documentation/\n/packages/*/README.md\n/packages/*/package.json"`,
-			">",
-			".git/info/sparse-checkout",
-		]);
-
-		const f = fs_1__default['default'].readFileSync("./.git/info/sparse-checkout").toString();
+		// await exec.exec("echo", [, ">", ".git/info/sparse-checkout"]);
+		fs__default['default'].writeFileSync(
+			path__default['default'].join(process.cwd(), ".git/info/sparse-checkout"),
+			`"/documentation/\n/packages/*/README.md\n/packages/*/package.json"`
+		);
+		const f = fs__default['default'].readFileSync("./.git/info/sparse-checkout").toString();
 		console.log("===\n", f, "\n===");
 		await exec_1.exec("git", ["sparse-checkout", "reapply"]);
 		await exec_1.exec("git", ["switch", target_branch]);

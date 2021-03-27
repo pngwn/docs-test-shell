@@ -2,6 +2,7 @@ import github from "@actions/github";
 import core from "@actions/core";
 import exec from "@actions/exec";
 import fs from "fs";
+import path from "path";
 
 // this was really clever but github suck
 
@@ -70,12 +71,11 @@ async function run() {
 		await exec.exec("git", ["sparse-checkout", "init"]);
 
 		// we only care about the documentation folder and any package readmes + package.jsons
-		await exec.exec("echo", [
-			`"/documentation/\n/packages/*/README.md\n/packages/*/package.json"`,
-			">",
-			".git/info/sparse-checkout",
-		]);
-
+		// await exec.exec("echo", [, ">", ".git/info/sparse-checkout"]);
+		fs.writeFileSync(
+			path.join(process.cwd(), ".git/info/sparse-checkout"),
+			`"/documentation/\n/packages/*/README.md\n/packages/*/package.json"`
+		);
 		const f = fs.readFileSync("./.git/info/sparse-checkout").toString();
 		console.log("===\n", f, "\n===");
 		await exec.exec("git", ["sparse-checkout", "reapply"]);
