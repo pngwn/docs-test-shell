@@ -7177,7 +7177,9 @@ async function run() {
 	]);
 
 	// await exec.exec("cd", [tmp_dir_name]);
+	console.log(process.cwd());
 	process.chdir(tmp_dir_name);
+	console.log(process.cwd());
 	await exec_1.exec("git", ["sparse-checkout", "init"]);
 
 	// we only care about the documentation folder and any package readmes + package.jsons
