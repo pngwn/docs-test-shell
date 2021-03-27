@@ -50,9 +50,36 @@ API.add("GET", "/docs/:pkg/:type/list", async (req, res) => {
 API.add("GET", "/docs/:pkg/:type/:id", async (req, res) => {
 	console.log("id endpoint");
 	const version = req.query.get("v") || "latest";
+
 	const { type, pkg, id } = req.params;
 
+	console.log(
+		`id endpoint. Version: ${version}. Key: ${pkg}:${type}:${id}:${version}`
+	);
+
 	const key = `${pkg}:${type}:${id}:${version}`;
+
+	const message = await read(SVELTE_DOCS, key);
+
+	if (message) {
+		console.log(message);
+		res.send(200, message);
+	} else {
+		res.send(404, {
+			body: `ID '${id}' for entity '${pkg}/${type}' not found.`,
+		});
+	}
+});
+
+API.add("GET", "/docs/:pkg/:type/versions", async (req, res) => {
+	console.log("id endpoint");
+	const version = req.query.get("v") || "latest";
+
+	const { type, pkg, id } = req.params;
+
+	console.log(`id endpoint. Version: ${version}. Key: ${pkg}:${type}:versions`);
+
+	const key = `${pkg}:${type}:${id}:versions`;
 
 	const message = await read(SVELTE_DOCS, key);
 

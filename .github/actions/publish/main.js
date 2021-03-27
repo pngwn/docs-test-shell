@@ -1,5 +1,6 @@
 import github from "@actions/github";
 import core from "@actions/core";
+import exec from "@actions/exec";
 
 // this was really clever but github suck
 
@@ -37,24 +38,57 @@ function find_type(array, base) {
 async function run() {
 	const type = core.getInput("type");
 	const target_repo = core.getInput("repo");
+	const target_branch = core.getInput("branch");
 	const base_dir = core.getInput("base");
 	const token = core.getInput("token");
-	console.log(type, "\n", target_repo, "\n", base_dir);
-	// console.log(JSON.stringify(github, null, 2));
 
-	const octokit = github.getOctokit(token);
-	const files = await get_files_from_repo(octokit, target_repo, base_dir);
+	const tmp_dir_name = `__tmp_${target_branch}`;
 
-	const categories = {};
-	const sorted = files.forEach((arr) => {
-		const type = find_type(arr, base);
-		console.log(type);
+	// we want to clone the necessary branch and only that branch
+	// but we don't want files because we want to sparsely checkout the branch later
+	// we also don't want any history, we only care about files
+	// this is basically magic
+	await exec.exec("git", [
+		"clone",
+		`https://github.com/sveltejs/${target_repo}.git`,
+		"--no-checkout",
+		"--branch",
+		target_branch,
+		"--single-branch",
+		tmp_dir_name,
+		"--depth",
+		"1",
+	]);
 
-		if (categories[type]) categories[type].push(arr);
-		else categories[type] = [arr];
-	}, {});
+	await exec.exec("cd", [tmp_dir_name]);
+	await exec.exec("git", ["sparse-checkout", "init"]);
 
-	console.log(categories);
+	// we only care about the documentation folder and any package readmes + package.jsons
+	await exec.exec("echo", [
+		`"/documentation/\n/packages/*/README.md\n/packages/*/package.json"`,
+		">",
+		".git/info/sparse-checkout",
+	]);
+	await exec.exec("git", ["sparse-checkout", "reapply"]);
+	await exec.exec("git", ["switch", " client-entries"]);
+	await exec.exec("ls", ["-a"]);
+	await exec.exec("ls", ["packages/kit"]);
+	// console.log(type, "\n", target_repo, "\n", base_dir);
+	// // console.log(JSON.stringify(github, null, 2));
+
+	// const octokit = github.getOctokit(token);
+	// const files = await get_files_from_repo(octokit, target_repo, base_dir);
+
+	// const categories = {};
+	// const sorted = files.forEach((arr) => {
+	// 	const type = find_type(arr, base);
+	// 	console.log(type);
+
+	// 	if (categories[type]) categories[type].push(arr);
+	// 	else categories[type] = [arr];
+	// }, {});
+
+	// console.log(categories);
 
 	// get TAG, get PROJECT
 	// console.log(JSON.stringify(github.payload, null, 2));

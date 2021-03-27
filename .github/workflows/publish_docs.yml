@@ -9,8 +9,8 @@ on:
       repo:
         description: "the target repo for the docs"
         required: true
-      base:
-        description: "the base dir for the docs of the repo"
+      branch:
+        description: "the branch for the docs we want to publish"
         required: true
 
 jobs:
