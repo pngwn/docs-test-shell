@@ -7181,7 +7181,7 @@ async function run() {
 	console.log(process.cwd());
 	process.chdir(tmp_dir_name);
 	console.log(process.cwd());
-	await exec_1.exec("git", ["sparse-checkout", "init", "--verbose"]);
+	await exec_1.exec("git", ["sparse-checkout", "init"]);
 
 	// we only care about the documentation folder and any package readmes + package.jsons
 	await exec_1.exec("echo", [
@@ -7189,8 +7189,8 @@ async function run() {
 		">",
 		".git/info/sparse-checkout",
 	]);
-	await exec_1.exec("git", ["sparse-checkout", "reapply", "--verbose"]);
-	await exec_1.exec("git", ["switch", " client-entries", "--verbose"]);
+	await exec_1.exec("git", ["sparse-checkout", "reapply"]);
+	await exec_1.exec("git", ["switch", " client-entries"]);
 	await exec_1.exec("ls", ["-a"]);
 	await exec_1.exec("ls", ["packages/kit"]);
 	// console.log(type, "\n", target_repo, "\n", base_dir);
