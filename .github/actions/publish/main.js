@@ -75,7 +75,7 @@ async function run() {
 			".git/info/sparse-checkout",
 		]);
 		await exec.exec("git", ["sparse-checkout", "reapply"]);
-		await exec.exec("git", ["switch", " client-entries"]);
+		await exec.exec("git", ["switch", target_branch]);
 		await exec.exec("ls", ["-a"]);
 		await exec.exec("ls", ["packages/kit"]);
 	} catch (e) {
