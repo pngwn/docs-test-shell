@@ -48,35 +48,40 @@ async function run() {
 	// but we don't want files because we want to sparsely checkout the branch later
 	// we also don't want any history, we only care about files
 	// this is basically magic
-	await exec.exec("git", [
-		"clone",
-		`https://github.com/sveltejs/${target_repo}.git`,
-		"--no-checkout",
-		"--branch",
-		target_branch,
-		"--single-branch",
-		tmp_dir_name,
-		"--depth",
-		"1",
-		"--verbose",
-	]);
+	try {
+		await exec.exec("git", [
+			"clone",
+			`https://github.com/sveltejs/${target_repo}.git`,
+			"--no-checkout",
+			"--branch",
+			target_branch,
+			"--single-branch",
+			tmp_dir_name,
+			"--depth",
+			"1",
+			"--verbose",
+		]);
 
-	// await exec.exec("cd", [tmp_dir_name]);
-	console.log(process.cwd());
-	process.chdir(tmp_dir_name);
-	console.log(process.cwd());
-	await exec.exec("git", ["sparse-checkout", "init"]);
+		// await exec.exec("cd", [tmp_dir_name]);
+		console.log(process.cwd());
+		process.chdir(tmp_dir_name);
+		console.log(process.cwd());
+		await exec.exec("git", ["sparse-checkout", "init"]);
 
-	// we only care about the documentation folder and any package readmes + package.jsons
-	await exec.exec("echo", [
-		`"/documentation/\n/packages/*/README.md\n/packages/*/package.json"`,
-		">",
-		".git/info/sparse-checkout",
-	]);
-	await exec.exec("git", ["sparse-checkout", "reapply"]);
-	await exec.exec("git", ["switch", " client-entries"]);
-	await exec.exec("ls", ["-a"]);
-	await exec.exec("ls", ["packages/kit"]);
+		// we only care about the documentation folder and any package readmes + package.jsons
+		await exec.exec("echo", [
+			`"/documentation/\n/packages/*/README.md\n/packages/*/package.json"`,
+			">",
+			".git/info/sparse-checkout",
+		]);
+		await exec.exec("git", ["sparse-checkout", "reapply"]);
+		await exec.exec("git", ["switch", " client-entries"]);
+		await exec.exec("ls", ["-a"]);
+		await exec.exec("ls", ["packages/kit"]);
+	} catch (e) {
+		console.log(e.message);
+		throw e;
+	}
 	// console.log(type, "\n", target_repo, "\n", base_dir);
 	// // console.log(JSON.stringify(github, null, 2));
 
