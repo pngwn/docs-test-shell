@@ -74,11 +74,16 @@ async function run() {
 		// await exec.exec("echo", [, ">", ".git/info/sparse-checkout"]);
 		fs.writeFileSync(
 			path.join(process.cwd(), ".git/info/sparse-checkout"),
-			`"/documentation/\n/packages/*/README.md\n/packages/*/package.json"`
+			`/documentation/\n/packages/*/README.md\n/packages/*/package.json"`
 		);
 		const f = fs.readFileSync("./.git/info/sparse-checkout").toString();
 		console.log("===\n", f, "\n===");
+
+		console.log("before reapply");
+		await exec.exec("ls", ["-a"]);
 		await exec.exec("git", ["sparse-checkout", "reapply"]);
+		console.log("before switch");
+		await exec.exec("ls", ["-a"]);
 		await exec.exec("git", ["switch", target_branch]);
 		await exec.exec("ls", ["-a"]);
 		await exec.exec("ls", ["packages/kit"]);
