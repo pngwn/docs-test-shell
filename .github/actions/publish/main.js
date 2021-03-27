@@ -74,6 +74,7 @@ async function run() {
 			">",
 			".git/info/sparse-checkout",
 		]);
+		await exec.exec(cat, ['".git/info/sparse-checkout"']);
 		await exec.exec("git", ["sparse-checkout", "reapply"]);
 		await exec.exec("git", ["switch", target_branch]);
 		await exec.exec("ls", ["-a"]);
