@@ -1,6 +1,7 @@
 import github from "@actions/github";
 import core from "@actions/core";
 import exec from "@actions/exec";
+import fs from "fs";
 
 // this was really clever but github suck
 
@@ -74,7 +75,9 @@ async function run() {
 			">",
 			".git/info/sparse-checkout",
 		]);
-		await exec.exec(cat, ['".git/info/sparse-checkout"']);
+
+		const f = fs.readFileSync("./.git/info/sparse-checkout");
+		console.log("===\n", f, "\n===");
 		await exec.exec("git", ["sparse-checkout", "reapply"]);
 		await exec.exec("git", ["switch", target_branch]);
 		await exec.exec("ls", ["-a"]);
