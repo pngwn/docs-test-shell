@@ -19,6 +19,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: ls /usr/bin
+      - run: echo ~
       # - uses: actions/checkout@v2
       # - name: publish
       #   id: projects
