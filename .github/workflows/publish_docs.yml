@@ -17,6 +17,7 @@ jobs:
   publish_docs:
     runs-on: ubuntu-latest
     steps:
+      - run: whereis google-chrome
       - uses: actions/checkout@v2
       - name: publish
         id: projects
