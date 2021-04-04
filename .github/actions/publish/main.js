@@ -37,56 +37,51 @@ function find_type(array, base) {
 	return type;
 }
 
-async function run() {
-	const type = core.getInput("type");
-	const target_repo = core.getInput("repo");
-	const target_branch = core.getInput("branch");
-	const base_dir = core.getInput("base");
-	const token = core.getInput("token");
-
+async function get_repo(target_branch) {
 	const tmp_dir_name = `__tmp_${target_branch}`;
 
 	// we want to clone the necessary branch and only that branch
 	// but we don't want files because we want to sparsely checkout the branch later
 	// we also don't want any history, we only care about files
 	// this is basically magic
+	await exec.exec("git", [
+		"clone",
+		`https://github.com/sveltejs/${target_repo}.git`,
+		"--no-checkout",
+		"--branch",
+		target_branch,
+		"--single-branch",
+		tmp_dir_name,
+		"--depth",
+		"1",
+		"--verbose",
+	]);
+
+	process.chdir(tmp_dir_name);
+
+	await exec.exec("git", ["sparse-checkout", "init"]);
+
+	// we only care about the documentation folder and any package readmes + package.jsons
+	// await exec.exec("echo", [, ">", ".git/info/sparse-checkout"]);
+	fs.writeFileSync(
+		path.join(process.cwd(), ".git/info/sparse-checkout"),
+		`/documentation/\n/packages/*/README.md\n/packages/*/package.json"`
+	);
+	await exec.exec("git", ["sparse-checkout", "reapply"]);
+	await exec.exec("git", ["switch", target_branch]);
+}
+
+async function run() {
+	// we may need this for branch deploys when we figure that out
+	const type = core.getInput("type");
+	const target_repo = core.getInput("repo");
+	const target_branch = core.getInput("branch");
+	const token = core.getInput("token");
+
+	// const tmp_dir_name = `__tmp_${target_branch}`;
+
 	try {
-		await exec.exec("git", [
-			"clone",
-			`https://github.com/sveltejs/${target_repo}.git`,
-			"--no-checkout",
-			"--branch",
-			target_branch,
-			"--single-branch",
-			tmp_dir_name,
-			"--depth",
-			"1",
-			"--verbose",
-		]);
-
-		// await exec.exec("cd", [tmp_dir_name]);
-		console.log(process.cwd());
-		process.chdir(tmp_dir_name);
-		console.log(process.cwd());
-		await exec.exec("git", ["sparse-checkout", "init"]);
-
-		// we only care about the documentation folder and any package readmes + package.jsons
-		// await exec.exec("echo", [, ">", ".git/info/sparse-checkout"]);
-		fs.writeFileSync(
-			path.join(process.cwd(), ".git/info/sparse-checkout"),
-			`/documentation/\n/packages/*/README.md\n/packages/*/package.json"`
-		);
-		const f = fs.readFileSync("./.git/info/sparse-checkout").toString();
-		console.log("===\n", f, "\n===");
-
-		console.log("before reapply");
-		await exec.exec("ls", ["-a"]);
-		await exec.exec("git", ["sparse-checkout", "reapply"]);
-		console.log("before switch");
-		await exec.exec("ls", ["-a"]);
-		await exec.exec("git", ["switch", target_branch]);
-		await exec.exec("ls", ["-a"]);
-		await exec.exec("ls", ["packages/kit"]);
+		await get_repo(target_branch);
 	} catch (e) {
 		console.log(e.message);
 		throw e;
